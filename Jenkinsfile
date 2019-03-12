@@ -2,7 +2,7 @@ pipeline {
   agent any
   environment {
     ORG = 'spbkelt'
-    APP_NAME = 'spring-petclinic-gcp'
+    PARENT_CHART_NAME = 'spring-petclinic-gcp'
     CHARTMUSEUM_CREDS = credentials('jenkins-x-chartmuseum')
   }
   stages {
@@ -12,7 +12,7 @@ pipeline {
       }
       environment {
         PREVIEW_VERSION = "0.0.0-SNAPSHOT-$BRANCH_NAME-$BUILD_NUMBER"
-        PREVIEW_NAMESPACE = "$APP_NAME-$BRANCH_NAME".toLowerCase()
+        PREVIEW_NAMESPACE = "$PARENT_CHART_NAME-$BRANCH_NAME".toLowerCase()
         HELM_RELEASE = "$PREVIEW_NAMESPACE".toLowerCase()
       }
       steps {
@@ -20,10 +20,15 @@ pipeline {
         sh "mvn install"
         sh "skaffold version"
         sh "export VERSION=$PREVIEW_VERSION && skaffold build -p dev -f skaffold.yaml"
-        sh "jx step post build --image $DOCKER_REGISTRY/$ORG/$APP_NAME:$PREVIEW_VERSION"
+        script {
+          def services = ['spring-petclinic-api-gateway','spring-petclinic-customers-service,'spring-petclinic-vets-service','spring-petclinic-visits-service']
+          services.each { service ->
+            sh "jx step post build --image $DOCKER_REGISTRY/$ORG/${service}:$PREVIEW_VERSION"
+          }
+        }
         dir('charts/preview') {
           sh "make preview"
-          sh "jx preview --app $APP_NAME --dir ../.."
+          sh "jx preview --app ${PARENT_CHART_NAME} --dir ../.."
         }
       }
     }
@@ -41,7 +46,12 @@ pipeline {
         sh "mvn clean deploy"
         sh "skaffold version"
         sh "export VERSION=`cat VERSION` && skaffold build -p dev -f skaffold.yaml"
-        sh "jx step post build --image $DOCKER_REGISTRY/$ORG/$APP_NAME:\$(cat VERSION)"
+        script {
+          def services = ['spring-petclinic-api-gateway','spring-petclinic-customers-service,'spring-petclinic-vets-service','spring-petclinic-visits-service']
+          services.each { service ->
+            sh "jx step post build --image $DOCKER_REGISTRY/$ORG/${service}:\$(cat VERSION)"
+          }
+        }
       }
     }
     stage('Promote to Environments') {

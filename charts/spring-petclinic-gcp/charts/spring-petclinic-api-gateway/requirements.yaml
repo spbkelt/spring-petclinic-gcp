@@ -1,0 +1,18 @@
+dependencies:
+- alias: expose
+  name: exposecontroller
+  repository: http://chartmuseum.jenkins-x.io
+  version: 2.3.92
+- alias: cleanup
+  name: exposecontroller
+  repository: http://chartmuseum.jenkins-x.io
+  version: 2.3.92
+- name: spring-petclinic-customers-service
+  repository: http://jenkins-x-chartmuseum:8080
+  version: 0.1.0-SNAPSHOT
+- name: spring-petclinic-visits-service
+  repository: http://jenkins-x-chartmuseum:8080
+  version: 0.1.0-SNAPSHOT
+- name: spring-petclinic-vets-service
+  repository: http://jenkins-x-chartmuseum:8080
+  version: 0.1.0-SNAPSHOT

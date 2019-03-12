@@ -3,13 +3,13 @@
 # Declare variables to be passed into your templates.
 replicaCount: 1
 image:
-  repository: draft
-  tag: dev
+  repository: jenkins-x-docker-registry:5000/spbkelt/spring-petclinic-customers-service
+  tag: 0.1.0-SNAPSHOT
   pullPolicy: IfNotPresent
 service:
-  name: spring-petclinic-visits-service
+  name: spring-petclinic-vets-service
   type: ClusterIP
-  externalPort: 8082
+  externalPort: 8083
   internalPort: 8080
   annotations:
     fabric8.io/expose: "true"
