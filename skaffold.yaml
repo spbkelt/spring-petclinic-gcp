@@ -1,13 +1,9 @@
-apiVersion: skaffold/v1beta2
+apiVersion: skaffold/v1beta6
 kind: Config
 build:
-  artifacts:
-  - image: changeme
-    context: .
-    docker: {}
   tagPolicy:
     envTemplate:
-      template: '{{.DOCKER_REGISTRY}}/spbkelt/spring-petclinic-gcp:{{.VERSION}}'
+      template: '{{.DOCKER_REGISTRY}}/{{.IMAGE_NAME}}:{{.VERSION}}'
   local: {}
 deploy:
   kubectl: {}
@@ -15,16 +11,58 @@ profiles:
 - name: dev
   build:
     artifacts:
-    - docker: {}
+    - image: spring-petclinic-customers-service
+      context: .
+      docker:
+        dockerfile: Dockerfile
+        buildArgs:
+          SERVICE_NAME: spring-petclinic-customers-service
+          SERVICE_VERSION: '{{.VERSION}}'
+    - image: spring-petclinic-vets-service
+      context: .
+      docker:
+        dockerfile: Dockerfile
+        buildArgs:
+          SERVICE_NAME: spring-petclinic-vets-service
+          SERVICE_VERSION: '{{.VERSION}}'
+    - image: spring-petclinic-visits-service
+      context: .
+      docker:
+        dockerfile: Dockerfile
+        buildArgs:
+          SERVICE_NAME: spring-petclinic-visits-service
+          SERVICE_VERSION: '{{.VERSION}}'
+    - image: spring-petclinic-api-gateway
+      context: .
+      docker:
+        dockerfile: Dockerfile
+        buildArgs:
+          SERVICE_NAME: spring-petclinic-api-gateway
+          SERVICE_VERSION: '{{.VERSION}}'
     tagPolicy:
       envTemplate:
-        template: '{{.DOCKER_REGISTRY}}/spbkelt/spring-petclinic-gcp:{{.DIGEST_HEX}}'
+        template: '{{.DOCKER_REGISTRY}}/spbkelt/{{.IMAGE_NAME}}:{{.VERSION}}'
     local: {}
   deploy:
     helm:
       releases:
-      - name: spring-petclinic-gcp
-        chartPath: charts/spring-petclinic-gcp
+      - name: spring-petclinic-customers-service
+        chartPath: charts/spring-petclinic-customers-service
         setValueTemplates:
-          image.repository: '{{.DOCKER_REGISTRY}}/spbkelt/spring-petclinic-gcp'
-          image.tag: '{{.DIGEST_HEX}}'
+          image.repository: '{{.DOCKER_REGISTRY}}/spbkelt/{{.IMAGE_NAME}}'
+          image.tag: '{{.VERSION}}'
+      - name: spring-petclinic-vets-service
+        chartPath: charts/vets-service
+        setValueTemplates:
+          image.repository: '{{.DOCKER_REGISTRY}}/spbkelt/{{.IMAGE_NAME}}'
+          image.tag: '{{.VERSION}}'
+      - name: spring-petclinic-visits-service
+        chartPath: charts/visits-service
+        setValueTemplates:
+          image.repository: '{{.DOCKER_REGISTRY}}/spbkelt/{{.IMAGE_NAME}}'
+          image.tag: '{{.VERSION}}'
+      - name: spring-petclinic-api-gateway
+        chartPath: charts/api-gateway
+        setValueTemplates:
+          image.repository: '{{.DOCKER_REGISTRY}}/spbkelt/{{.IMAGE_NAME}}'
+          image.tag: '{{.VERSION}}'

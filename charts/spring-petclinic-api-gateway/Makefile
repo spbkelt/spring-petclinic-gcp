@@ -1,6 +1,6 @@
 CHART_REPO := http://jenkins-x-chartmuseum:8080
 CURRENT=$(pwd)
-NAME := spring-petclinic-gcp
+NAME := api-gateway
 OS := $(shell uname)
 RELEASE_VERSION := $(shell cat ../../VERSION)
 

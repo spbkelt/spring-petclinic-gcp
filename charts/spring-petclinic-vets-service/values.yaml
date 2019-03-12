@@ -7,9 +7,9 @@ image:
   tag: dev
   pullPolicy: IfNotPresent
 service:
-  name: spring-petclinic-gcp
+  name: spring-petclinic-vets-service
   type: ClusterIP
-  externalPort: 80
+  externalPort: 8083
   internalPort: 8080
   annotations:
     fabric8.io/expose: "true"
