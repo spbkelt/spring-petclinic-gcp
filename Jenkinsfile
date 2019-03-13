@@ -21,7 +21,7 @@ pipeline {
         sh "skaffold version"
         sh "export VERSION=$PREVIEW_VERSION && skaffold build -p dev -f skaffold.yaml"
         script {
-          def services = ['spring-petclinic-api-gateway','spring-petclinic-customers-service,'spring-petclinic-vets-service','spring-petclinic-visits-service']
+          def services = ['spring-petclinic-api-gateway','spring-petclinic-customers-service','spring-petclinic-vets-service','spring-petclinic-visits-service']
           services.each { service ->
             sh "jx step post build --image $DOCKER_REGISTRY/$ORG/${service}:$PREVIEW_VERSION"
           }
@@ -47,7 +47,7 @@ pipeline {
         sh "skaffold version"
         sh "export VERSION=`cat VERSION` && skaffold build -p dev -f skaffold.yaml"
         script {
-          def services = ['spring-petclinic-api-gateway','spring-petclinic-customers-service,'spring-petclinic-vets-service','spring-petclinic-visits-service']
+          def services = ['spring-petclinic-api-gateway','spring-petclinic-customers-service','spring-petclinic-vets-service','spring-petclinic-visits-service']
           services.each { service ->
             sh "jx step post build --image $DOCKER_REGISTRY/$ORG/${service}:\$(cat VERSION)"
           }
@@ -72,3 +72,4 @@ pipeline {
     }
   }
 }
+
