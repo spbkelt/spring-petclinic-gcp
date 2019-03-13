@@ -1,4 +1,6 @@
 approvers:
-- spbkelt
+- dmitry-gitops
+- profitman
 reviewers:
-- spbkelt
+- dmitry-gitops
+- profitman
