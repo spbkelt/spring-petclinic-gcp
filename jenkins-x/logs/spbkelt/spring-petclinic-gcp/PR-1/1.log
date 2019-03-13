@@ -1,0 +1,14 @@
+Step: build-step-credential-initializer:
+
+{"level":"warn","ts":1552478307.5792396,"logger":"fallback-logger","caller":"logging/config.go:65","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/test\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1552478307.5801132,"logger":"fallback-logger","caller":"creds-init/main.go:40","msg":"Credentials initialized."}
+Step: build-step-git-source-0:
+
+{"level":"warn","ts":1552478308.7216918,"logger":"fallback-logger","caller":"logging/config.go:65","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/test\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1552478309.1516566,"logger":"fallback-logger","caller":"git-init/main.go:92","msg":"Successfully cloned \"https://github.com/spbkelt/spring-petclinic-gcp.git\" @ \"12023524178c076d7b05e03b070e2d915bd610f0\" in path \"/workspace\""}
+Step: build-step-jenkins:
+
+Picked up _JAVA_OPTIONS: -Xmx400m
+Started
+Running in Durability level: PERFORMANCE_OPTIMIZED
+  22.142 [id=24]	WARNING	i.f.k.c.i.VersionUsageUtils#alert: The client is using resource type 'customresourcedefinitions' with unstable version 'v1beta1'
