@@ -1,0 +1,83 @@
+Step: build-step-credential-initializer:
+
+{"level":"warn","ts":1552490721.0769696,"logger":"fallback-logger","caller":"logging/config.go:65","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/test\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1552490721.078981,"logger":"fallback-logger","caller":"creds-init/main.go:40","msg":"Credentials initialized."}
+Step: build-step-git-source-0:
+
+{"level":"warn","ts":1552490722.7969909,"logger":"fallback-logger","caller":"logging/config.go:65","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/test\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1552490724.025791,"logger":"fallback-logger","caller":"git-init/main.go:92","msg":"Successfully cloned \"https://github.com/spbkelt/spring-petclinic-gcp.git\" @ \"13e97d46d0b31316e9e481b5bd585b0d9300e0b9\" in path \"/workspace\""}
+Step: build-step-jenkins:
+
+Picked up _JAVA_OPTIONS: -Xmx400m
+Started
+Running in Durability level: PERFORMANCE_OPTIMIZED
+  21.618 [id=32]	WARNING	i.f.k.c.i.VersionUsageUtils#alert: The client is using resource type 'customresourcedefinitions' with unstable version 'v1beta1'
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /tmp/jenkinsTests.tmp/jenkins2056391126402378460test/workspace/job
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withCredentials
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (CI Build and push snapshot)
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] sh
++ mvn versions:set -DnewVersion=0.0.0-SNAPSHOT-PR-1-3
+Picked up _JAVA_OPTIONS: -Xmx400m
+[WARNING] 
+[WARNING] Some problems were encountered while building the effective settings
+[WARNING] 'servers.server.id' must be unique but found duplicate server with id nexus @ /root/.m2/settings.xml
+[WARNING] 
+[INFO] Scanning for projects...
+[INFO] Downloading from nexus: http://nexus/repository/maven-group/org/springframework/boot/spring-boot-dependencies/2.0.3.RELEASE/spring-boot-dependencies-2.0.3.RELEASE.pom
+[INFO] Downloading from nexus: http://nexus/repository/maven-group/org/springframework/cloud/spring-cloud-dependencies/Finchley.RELEASE/spring-cloud-dependencies-Finchley.RELEASE.pom
+[INFO] Downloading from nexus: http://nexus/repository/maven-group/org/springframework/cloud/spring-cloud-gcp-dependencies/1.1.0.M1/spring-cloud-gcp-dependencies-1.1.0.M1.pom
+[ERROR] [ERROR] Some problems were encountered while processing the POMs:
+[ERROR] Non-resolvable import POM: Could not transfer artifact org.springframework.boot:spring-boot-dependencies:pom:2.0.3.RELEASE from/to nexus (http://nexus/repository/maven-group/): Not authorized , ReasonPhrase:Unauthorized. @ line 50, column 25
+[ERROR] Non-resolvable import POM: Could not transfer artifact org.springframework.cloud:spring-cloud-dependencies:pom:Finchley.RELEASE from/to nexus (http://nexus/repository/maven-group/): Not authorized , ReasonPhrase:Unauthorized. @ line 57, column 25
+[ERROR] Non-resolvable import POM: Could not transfer artifact org.springframework.cloud:spring-cloud-gcp-dependencies:pom:1.1.0.M1 from/to nexus (http://nexus/repository/maven-group/): Not authorized , ReasonPhrase:Unauthorized. @ line 64, column 25
+ @ 
+[ERROR] The build could not read 1 project -> [Help 1]
+[ERROR]   
+[ERROR]   The project org.springframework.samples:spring-petclinic-gcp:1.0.0-SNAPSHOT (/tmp/jenkinsTests.tmp/jenkins2056391126402378460test/workspace/job/pom.xml) has 3 errors
+[ERROR]     Non-resolvable import POM: Could not transfer artifact org.springframework.boot:spring-boot-dependencies:pom:2.0.3.RELEASE from/to nexus (http://nexus/repository/maven-group/): Not authorized , ReasonPhrase:Unauthorized. @ line 50, column 25 -> [Help 2]
+[ERROR]     Non-resolvable import POM: Could not transfer artifact org.springframework.cloud:spring-cloud-dependencies:pom:Finchley.RELEASE from/to nexus (http://nexus/repository/maven-group/): Not authorized , ReasonPhrase:Unauthorized. @ line 57, column 25 -> [Help 2]
+[ERROR]     Non-resolvable import POM: Could not transfer artifact org.springframework.cloud:spring-cloud-gcp-dependencies:pom:1.1.0.M1 from/to nexus (http://nexus/repository/maven-group/): Not authorized , ReasonPhrase:Unauthorized. @ line 64, column 25 -> [Help 2]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/ProjectBuildingException
+[ERROR] [Help 2] http://cwiki.apache.org/confluence/display/MAVEN/UnresolvableModelException
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Build Release)
+Stage "Build Release" skipped due to earlier failure(s)
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Promote to Environments)
+Stage "Promote to Environments" skipped due to earlier failure(s)
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+ERROR: script returned exit code 1
+Finished: FAILURE
