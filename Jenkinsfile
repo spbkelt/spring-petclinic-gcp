@@ -17,7 +17,8 @@ pipeline {
       }
       steps {
         sh "mvn versions:set -DnewVersion=$PREVIEW_VERSION"
-        sh "mvn install"
+        sh "cat ~/.m2/settings.xml"
+				sh "mvn install"
         sh "skaffold version"
         sh "export VERSION=$PREVIEW_VERSION && skaffold build -p dev -f skaffold.yaml"
         script {
