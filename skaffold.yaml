@@ -47,22 +47,22 @@ profiles:
     helm:
       releases:
       - name: spring-petclinic-customers-service
-        chartPath: charts/spring-petclinic-customers-service
+        chartPath: charts/spring-petclinic-gcp/charts/spring-petclinic-customers-service
         setValueTemplates:
           image.repository: '{{.DOCKER_REGISTRY}}/spbkelt/{{.IMAGE_NAME}}'
           image.tag: '{{.VERSION}}'
       - name: spring-petclinic-vets-service
-        chartPath: charts/vets-service
+        chartPath: charts/spring-petclinic-gcp/charts/spring-petclinic-vets-service
         setValueTemplates:
           image.repository: '{{.DOCKER_REGISTRY}}/spbkelt/{{.IMAGE_NAME}}'
           image.tag: '{{.VERSION}}'
       - name: spring-petclinic-visits-service
-        chartPath: charts/visits-service
+        chartPath: charts/spring-petclinic-gcp/charts/spring-petclinic-visits-service
         setValueTemplates:
           image.repository: '{{.DOCKER_REGISTRY}}/spbkelt/{{.IMAGE_NAME}}'
           image.tag: '{{.VERSION}}'
       - name: spring-petclinic-api-gateway
-        chartPath: charts/api-gateway
+        chartPath: charts/spring-petclinic-gcp/charts/spring-petclinic-api-gateway
         setValueTemplates:
           image.repository: '{{.DOCKER_REGISTRY}}/spbkelt/{{.IMAGE_NAME}}'
           image.tag: '{{.VERSION}}'
