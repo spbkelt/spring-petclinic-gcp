@@ -62,6 +62,7 @@ pipeline {
       }
       steps {
         dir('charts/spring-petclinic-gcp') {
+					sh "printenv"
           sh "jx step changelog --version v\$(cat ../../VERSION)"
 
           // release the helm chart
