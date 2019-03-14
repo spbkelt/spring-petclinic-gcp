@@ -16,8 +16,8 @@ pipeline {
         HELM_RELEASE = "$PREVIEW_NAMESPACE".toLowerCase()
       }
       steps {
+        sh "printenv"
         sh "mvn versions:set -DnewVersion=$PREVIEW_VERSION"
-        sh "cat ~/.m2/settings.xml"
 				sh "mvn install"
         sh "skaffold version"
         sh "export VERSION=$PREVIEW_VERSION && skaffold build -p dev -f skaffold.yaml"
@@ -40,6 +40,7 @@ pipeline {
       steps {
         git 'https://github.com/spbkelt/spring-petclinic-gcp.git'
 
+        sh "printenv"
         // so we can retrieve the version in later steps
         sh "echo \$(jx-release-version) > VERSION"
         sh "mvn versions:set -DnewVersion=\$(cat VERSION)"
