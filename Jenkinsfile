@@ -17,6 +17,7 @@ pipeline {
       }
       steps {
         sh "printenv"
+        sh "id"
         sh "mvn versions:set -DnewVersion=$PREVIEW_VERSION"
 				sh "mvn install"
         sh "skaffold version"
