@@ -5,3 +5,4 @@ dependencies:
 - alias: preview
   name: spring-petclinic-gcp
   repository: file://../spring-petclinic-gcp
+  version: 0.1.0-SNAPSHOT
