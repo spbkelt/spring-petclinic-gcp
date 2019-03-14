@@ -2,14 +2,14 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 spring-petclinic-api-gateway:
-  image:
+  image: ""
     tag: ""
 spring-petclinic-customers-service:
-  image:
+  image: ""
     tag: ""
 spring-petclinic-vets-service:
-  image:
+  image: ""
     tag: ""
 spring-petclinic-visits-service:
-  image:
+  image: ""
     tag: ""

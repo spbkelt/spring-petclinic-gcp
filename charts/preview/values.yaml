@@ -18,5 +18,5 @@ cleanup:
 preview:
   image:
     repository: ""
-    tag: 0.1.0-SNAPSHOT
+    tag: ""
     pullPolicy: IfNotPresent
