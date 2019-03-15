@@ -3,13 +3,17 @@
 # Declare variables to be passed into your templates.
 spring-petclinic-api-gateway:
   image:
+    repository: ""
     tag: ""
 spring-petclinic-customers-service:
   image:
+    repository: ""
     tag: ""
 spring-petclinic-vets-service:
   image:
+    repository: ""
     tag: ""
 spring-petclinic-visits-service:
   image:
+    repository: ""
     tag: ""

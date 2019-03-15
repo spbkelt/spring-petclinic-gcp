@@ -3,8 +3,8 @@
 # Declare variables to be passed into your templates.
 replicaCount: 1
 image:
-  repository: jenkins-x-docker-registry:5000/spbkelt/spring-petclinic-customers-service
-  tag: 0.1.0-SNAPSHOT
+  repository: draft
+  tag: dev
   pullPolicy: IfNotPresent
 service:
   name: spring-petclinic-customers-service
