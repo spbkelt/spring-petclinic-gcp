@@ -3,17 +3,17 @@
 # Declare variables to be passed into your templates.
 spring-petclinic-api-gateway:
   image:
-    repository: ""
+    repository: "http://jenkins-x-chartmuseum:8080/spbkelt/spring-petclinic-api-gateway"
     tag: ""
 spring-petclinic-customers-service:
   image:
-    repository: ""
+    repository: "http://jenkins-x-chartmuseum:8080/spbkelt/spring-petclinic-customers-service"
     tag: ""
 spring-petclinic-vets-service:
   image:
-    repository: ""
+    repository: "http://jenkins-x-chartmuseum:8080/spbkelt/spring-petclinic-vets-service"
     tag: ""
 spring-petclinic-visits-service:
   image:
-    repository: ""
+    repository: "http://jenkins-x-chartmuseum:8080/spbkelt/spring-petclinic-visits-service"
     tag: ""
