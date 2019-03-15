@@ -3,17 +3,17 @@
 # Declare variables to be passed into your templates.
 spring-petclinic-api-gateway:
   image:
-    repository: "spbkelt/spring-petclinic-api-gateway"
+    repository: "10.23.246.235:5000/spbkelt/spring-petclinic-api-gateway"
     tag: ""
 spring-petclinic-customers-service:
   image:
-    repository: "spbkelt/spring-petclinic-customers-service"
+    repository: "10.23.246.235:5000/spbkelt/spring-petclinic-customers-service"
     tag: ""
 spring-petclinic-vets-service:
   image:
-    repository: "spbkelt/spring-petclinic-vets-service"
+    repository: "10.23.246.235:5000/spbkelt/spring-petclinic-vets-service"
     tag: ""
 spring-petclinic-visits-service:
   image:
-    repository: "spbkelt/spring-petclinic-visits-service"
+    repository: "10.23.246.235:5000/spbkelt/spring-petclinic-visits-service"
     tag: ""
