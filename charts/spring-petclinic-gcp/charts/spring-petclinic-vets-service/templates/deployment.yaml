@@ -28,6 +28,7 @@ spec:
         - containerPort: {{ .Values.service.internalPort }}
         livenessProbe:
           httpGet:
+            host: {{ .Values.service.name }}
             path: {{ .Values.probePath }}
             port: {{ .Values.service.internalPort }}
           initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }}
@@ -36,6 +37,7 @@ spec:
           timeoutSeconds: {{ .Values.livenessProbe.timeoutSeconds }}
         readinessProbe:
           httpGet:
+            host: {{ .Values.service.name }}
             path: {{ .Values.probePath }}
             port: {{ .Values.service.internalPort }}
           periodSeconds: {{ .Values.readinessProbe.periodSeconds }}
