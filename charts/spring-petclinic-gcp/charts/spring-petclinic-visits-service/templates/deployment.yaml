@@ -3,6 +3,8 @@ kind: Deployment
 metadata:
   name: {{ template "fullname" . }}
   labels:
+    app: {{ template "fullname" . }}
+    version: {{ .Values.image.tag }}
     draft: {{ default "draft-app" .Values.draft }}
     chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
 spec:
@@ -12,6 +14,7 @@ spec:
       labels:
         draft: {{ default "draft-app" .Values.draft }}
         app: {{ template "fullname" . }}
+        version: {{ .Values.image.tag }}
 {{- if .Values.podAnnotations }}
       annotations:
 {{ toYaml .Values.podAnnotations | indent 8 }}
