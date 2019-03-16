@@ -9,6 +9,7 @@ RUN mkdir -p /opt/profiler && \
     wget -qO- https://storage.googleapis.com/cloud-profiler/java/latest/profiler_java_agent.tar.gz | \
     tar xvz -C /opt/profiler
 
+RUN mkdir /app
 # Copy a startup script that helps executing entrypoint with environmental variable
 COPY start.sh /app/start.sh
 RUN chmod a+x /app/start.sh
@@ -18,9 +19,7 @@ ARG SERVICE_NAME
 ENV SERVICE_NAME ${SERVICE_NAME}
 # Copy Application, separating dependencies from application code
 ADD ${SERVICE_NAME}/target/lib/* /app/lib/
-
-ARG ARTIFACT_FILE
-ADD ${ARTIFACT_FILE} /app/app.jar
+ADD ${SERVICE_NAME}/target/*.jar /app/app.jar
 
 ARG EXPOSED_PORT=8080
 EXPOSE ${EXPOSED_PORT}
