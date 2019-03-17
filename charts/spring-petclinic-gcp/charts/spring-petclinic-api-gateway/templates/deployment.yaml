@@ -24,6 +24,15 @@ spec:
       - name: {{ .Chart.Name }}
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
+        env:
+        - name: GOOGLE_APPLICATION_CREDENTIALS
+          value: /etc/gcp/petclinic-service-account.json
+        - name: PROJECT_ID
+          value: mythic-chalice-233119
+        volumeMounts:
+        - name: service-account-secret-volume
+          mountPath: /etc/gcp
+          readOnly: true
         ports:
         - containerPort: {{ .Values.service.internalPort }}
         livenessProbe:
@@ -46,3 +55,10 @@ spec:
         resources:
 {{ toYaml .Values.resources | indent 12 }}
       terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds }}
+      volumes:
+        - name: service-account-secret-volume
+          secret:
+            secretName: petclinic-credentials
+            items:
+              - key: petclinic-service-account.json
+                path: petclinic-service-account.json

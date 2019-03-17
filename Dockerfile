@@ -10,6 +10,7 @@ RUN mkdir -p /opt/profiler && \
     tar xvz -C /opt/profiler
 
 RUN mkdir /app
+RUN mkdir -p /etc/gcp/
 # Copy a startup script that helps executing entrypoint with environmental variable
 COPY start.sh /app/start.sh
 RUN chmod a+x /app/start.sh
