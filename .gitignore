@@ -19,3 +19,5 @@ generated/
 **/*.NOT_READY
 .json
 .env
+.lock
+.backup

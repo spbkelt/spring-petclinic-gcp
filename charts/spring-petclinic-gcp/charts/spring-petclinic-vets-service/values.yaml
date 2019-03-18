@@ -1,0 +1,36 @@
+# Default values for Maven projects.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+replicaCount: 1
+image:
+  repository: http://jenkins-x-chartmuseum:8080/spbkelt/spring-petclinic-vets-service
+  tag: dev
+  pullPolicy: IfNotPresent
+service:
+  name: spring-petclinic-vets-service
+  type: ClusterIP
+  externalPort: 8080
+  internalPort: 8080
+  actuatorPort: 8081
+  annotations:
+    fabric8.io/expose: "false"
+    fabric8.io/ingress.annotations: "kubernetes.io/ingress.class: istio"
+resources:
+  limits:
+    cpu: 500m
+    memory: 512Mi
+  requests:
+    cpu: 400m
+    memory: 512Mi
+probePath: /actuator/health
+livenessProbe:
+  initialDelaySeconds: 120
+  periodSeconds: 10
+  successThreshold: 1
+  timeoutSeconds: 5
+readinessProbe:
+  initialDelaySeconds: 120
+  periodSeconds: 10
+  successThreshold: 1
+  timeoutSeconds: 5
+terminationGracePeriodSeconds: 10

@@ -1,6 +1,9 @@
 aliases:
 - spbkelt
 best-approvers:
-- spbkelt
+- dmitry-gitops
+- profitman
 best-reviewers:
+- dmitry-gitops
+- profitman
 - spbkelt
