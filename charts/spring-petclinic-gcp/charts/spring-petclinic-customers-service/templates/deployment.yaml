@@ -29,6 +29,8 @@ spec:
           value: /etc/gcp/petclinic-service-account.json
         - name: PROJECT_ID
           value: mythic-chalice-233119
+        - name: SPRING_PROFILES_ACTIVE
+          value: gcp,production
         volumeMounts:
         - name: service-account-secret-volume
           mountPath: /etc/gcp
@@ -39,7 +41,7 @@ spec:
           httpGet:
             host: {{ .Values.service.name }}
             path: {{ .Values.probePath }}
-            port: {{ .Values.service.internalPort }}
+            port: {{ .Values.service.actuatorPort }}
           initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }}
           periodSeconds: {{ .Values.livenessProbe.periodSeconds }}
           successThreshold: {{ .Values.livenessProbe.successThreshold }}
@@ -48,7 +50,7 @@ spec:
           httpGet:
             host: {{ .Values.service.name }}
             path: {{ .Values.probePath }}
-            port: {{ .Values.service.internalPort }}
+            port: {{ .Values.service.actuatorPort }}
           periodSeconds: {{ .Values.readinessProbe.periodSeconds }}
           successThreshold: {{ .Values.readinessProbe.successThreshold }}
           timeoutSeconds: {{ .Values.readinessProbe.timeoutSeconds }}
