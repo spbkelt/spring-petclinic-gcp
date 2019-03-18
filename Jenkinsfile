@@ -17,6 +17,7 @@ pipeline {
       }
       steps {
         sh "printenv"
+        sh "env"
         sh "id"
         sh "mvn versions:set -DnewVersion=$PREVIEW_VERSION"
 				sh "mvn install"
